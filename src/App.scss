@@ -1,0 +1,320 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+$color-black-100: #242529;
+$color-black-200: #33353c;
+$color-black-300: #36383e;
+$color-yellow-100: #fff27a;
+$color-orange-100: #fdebdd;
+
+@mixin table {
+  @media screen and (width >=768px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (width >=1024px) {
+    @content;
+  }
+}
+
+body {
+  background-color: $color-black-100;
+  font-family: "Outfit", sans-serif;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+img,
+picture {
+  display: block;
+}
+
+img {
+  object-fit: cover;
+}
+
+.aside {
+  position: fixed;
+  align-content: start;
+  gap: 4rem;
+  padding: 1rem 1.5rem;
+  background-color: $color-black-100;
+  inset: auto 0 0 0;
+
+  @include desktop() {
+    padding: 2rem 1.5rem;
+    min-height: 100dvh;
+    border-right: 1px solid $color-black-200;
+    position: initial;
+    display: grid;
+  }
+}
+
+.main {
+  padding: 2rem;
+}
+
+.content {
+  display: grid;
+
+  @include desktop() {
+    grid-template-columns: max-content 1fr;
+  }
+}
+
+%inputCustom {
+  width: 100%;
+  height: 56px;
+  border-radius: 8px;
+  border: 0;
+  outline: 0;
+  color: white;
+  font-family: inherit;
+  background-color: $color-black-200;
+  font-size: 1rem;
+  padding: 0 1rem;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  &__input {
+    max-width: 250px;
+    width: 100%;
+    height: 56px;
+    border-radius: 8px;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-family: inherit;
+    background-color: $color-black-200;
+    font-size: 1rem;
+    padding: 0 1rem;
+
+    &::placeholder {
+      color: rgb(232, 230, 230);
+    }
+  }
+  svg {
+    width: 30px;
+    fill: #fff;
+  }
+}
+
+.header {
+  &__title {
+    display: none;
+    gap: 1rem;
+    align-items: center;
+    letter-spacing: 5px;
+    font-weight: 500;
+    font-size: 1rem;
+    color: $color-yellow-100;
+
+    svg {
+      fill: $color-yellow-100;
+    }
+
+    @include desktop() {
+      display: flex;
+    }
+  }
+}
+
+.main-nav {
+  &__list {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+
+    @include desktop() {
+      justify-content: start;
+      flex-direction: column;
+    }
+  }
+
+  &__link {
+    padding: 1.2rem 1rem;
+    color: $color-orange-100;
+    font-size: 1.2rem;
+    display: inline-flex;
+    gap: 1rem;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+
+    &.active {
+      background-color: #353537;
+    }
+
+    svg {
+      fill: $color-orange-100;
+      width: 22px;
+    }
+
+    span {
+      display: none;
+
+      @include desktop() {
+        display: initial;
+      }
+    }
+  }
+}
+
+.error {
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  span {
+    font-size: 1.5rem;
+    padding: 1rem;
+
+    &:first-child {
+      border-right: 1px solid white;
+    }
+  }
+}
+
+.form {
+  margin-bottom: 2rem;
+}
+
+.productos {
+  margin-top: 50px;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.card {
+  overflow: hidden;
+  border-radius: 16px;
+  background-color: $color-black-300;
+
+  &__picture,
+  &__image {
+    width: 100%;
+  }
+
+  &__image {
+    height: 280px;
+
+    @include table() {
+      height: 180px;
+    }
+  }
+
+  &__body {
+    padding: 1.4rem 1.2rem;
+    color: $color-orange-100;
+    min-height: 188px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+
+  &__price {
+    font-weight: 600;
+    font-size: 2.15rem;
+  }
+
+  &__btn {
+    cursor: pointer;
+    font-family: inherit;
+    background-color: transparent;
+    border: 1px solid $color-orange-100;
+    color: $color-orange-100;
+    padding: 0.5rem 1rem;
+    border-radius: 16px;
+    transition: all 0.4s ease;
+
+    &:hover {
+      background-color: $color-black-100;
+    }
+  }
+}
+
+.about,
+.contact {
+  &__title {
+    font-size: 3rem;
+    color: $color-yellow-100;
+  }
+
+  &__copy {
+    max-width: 90ch;
+    line-height: 1.6;
+    color: white;
+    margin-top: 1rem;
+    &--mb {
+      margin: 0.5rem 0 1.5rem;
+    }
+  }
+}
+
+.contact {
+  padding-bottom: 5rem;
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    input {
+      flex: 1 1 250px;
+      @extend %inputCustom;
+      display: block;
+    }
+  }
+
+  textarea {
+    @extend %inputCustom;
+    height: auto;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    resize: none;
+  }
+
+  input[type="submit"] {
+    cursor: pointer;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    font-family: inherit;
+    color: black;
+    font-weight: 600;
+    background-color: $color-yellow-100;
+    outline: none;
+    border: 0;
+    transition: all 0.4s ease;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
